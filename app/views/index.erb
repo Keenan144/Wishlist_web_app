@@ -1,0 +1,13 @@
+<div class="container" >
+
+   <a href="/">View Friends</a>
+
+
+  <a href="/wishlistitem/new">Add a Wish</a>
+</div>
+
+<div align="center">
+  <% Wish.all.each do |wish| %>
+  <a href="/user/<%wish.user_id%>"><%= wish.content %></a>
+  <% end %>
+</div>
