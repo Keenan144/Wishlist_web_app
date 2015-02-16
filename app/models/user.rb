@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
 validates :handle, presence: true
 validates :handle, uniqueness: true
-validates :handle, format: { with: /\A[a-z0-9_-]{3,20}\z/}
 validates :name, presence: true
+validates :password, presence: true
 
 
 include BCrypt

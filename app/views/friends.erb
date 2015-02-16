@@ -1,0 +1,13 @@
+
+
+
+<div class="friends_list">
+<%@friends.each do |friend|%>
+  <% if session_current_user.id == friend.friender_id%>
+  <li>
+    <h1><a href="/user/<%=session_current_user.id%>/profile/<%=friend.friended_id%>"><%= User.find(friend.friended_id).name %></a></h1>
+    <%end%>
+  </li>
+  <%end%>
+</div>
+

@@ -3,7 +3,7 @@
   <div class="profile_header">
     <h2 align ="center">Profile of
       <% User.all.each do |user| %>
-          <% if user.id == @id.to_i %>
+          <% if user.id == @profile_id.to_i %>
           <% @user = user %>
         <%= @user_name = user.name%></h2>
         <% end %>
@@ -20,15 +20,29 @@
   <p><%= @user.profile_picture %></p>
 </div>
 
-  <div id="profile_name"> <%= @user_name %>
+  <div id="profile_name"> 
+    <%= @user_name %><br>
+    <%= @user.gender %><br>
+    <%= @user.age %>
   </div>
-  <div class="friend me">
-    <button>Add Friend</button>
+  <div class="friend_me">
+   <%Friend.all.each do |friend|%>
+      <% if session_current_user.id == friend.friender_id && @profile_id.to_i == friend.friended_id%>
+       <style type="text/css">
+        .add_friend{
+          visibility: hidden;
+        }
+       </style>
+       <%elsif @profile_id.to_i == friend.friended_id %>
+       <%end%>
+     <%end%>
+         <button class="add_friend" data-user-id="<%=@user_id%>" data-friend-id="<%=@user.id%>">Add Friend</button>
   </div>
+  <h1><%=@user_id%></h1>
 
   <div class="profile_info">
     <% User.all.each do |user| %>
-      <% if user.id == @id.to_i %>
+      <% if user.id == @profile_id.to_i %>
       <p><%=  user.name %> wishes for: </p>
       <p><% user.wishes.reverse.each do |wish| %></p>
         <p><a href="/user/<%= user.id %>/wish/<%=wish.id%>"><%= wish.content %></a></p>

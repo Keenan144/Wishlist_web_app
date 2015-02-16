@@ -2,6 +2,7 @@ $(document).ready(function() {
   login_user();
   add_wish();
   delete_button();
+  add_friend();
 
   // This is called after the document has loaded in its entirety
   // This guarantees that any elements we bind to will exist on the page
@@ -21,15 +22,10 @@ var login_user = function() {
       url: "/login",
       type: "post",
       data: formdata
-
     })
     .success(function(response) {
       console.log(response)
       console.log("success");
-      
-
-
-
     })
     .fail(function() {
       console.log("error");
@@ -93,6 +89,32 @@ var delete_button = function() {
     .always(function() {
       console.log("complete");
     })
+  });
+}
 
-  })
+
+var add_friend = function() {
+  $('.friend_me').on('click', 'button', function(event){
+    event.preventDefault();
+    console.log("clicked");
+
+    var button = this,
+    url = '/user/' + this.dataset.userId + '/profile/' + this.dataset.friendId + '/add_friend';
+
+    $.ajax({
+      url: url,
+      type: 'post',
+    })
+  .success(function(response3) {
+      console.log(response3)
+      console.log("friending")
+      $('.friend_me').hide()
+    })
+  .fail(function() {
+      console.log("error");
+    })
+  .always(function() {
+      console.log("complete");
+    })
+  });
 }

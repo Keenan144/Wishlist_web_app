@@ -25,9 +25,9 @@
   </h1>
 
   <h5 class="top_nav_left">
-    <a href="/profile" id="profile_page_button"> Profile Page</a>
-    <a href="/friends" id="friends_page_button"> Friends Page </a>
     <% if session_current_user != nil %>
+    <a href="/profile" id="profile_page_button"> Profile Page</a>
+    <a href="/user/<%=session_current_user.id%>/friends" id="friends_page_button"> Friends Page </a>
       <a href="/user/<%=session_current_user.id%>/wish" id="Wishlistnew_button"> Add a Wish </a>
       <% else %>
     <% end %>

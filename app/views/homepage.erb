@@ -13,28 +13,57 @@
 
 
     
-    <form class="main_login_form" action='/login' method="post">
+  <form class="main_login_form" action='/login' method="post">
       User Name: <input type="text" name="handle" placeholder="user name"><br><br>
-      Password: <input type="password" name="password" placeholder="and your password"><br><br>
+      Password: <input type="password" name="password" placeholder="password"><br><br>
       <input type="submit" value="Log in">
     </form>
     <br>
     <a href="/register" id="signup"> <button>Sign Up</button> </a>
 
   </div>
-    <% else %>
-      <div class="recent_wishes" align="center">
-        <h2> Recent Wishes </h2>
-        <% @counter = 0 %>
-        <% Wish.all.reverse.each do |wish| %>
-        <% @counter += 1 %>
-        <% if @counter < 11 %>
-        <% @dude = (wish.user_id).to_i %>
-            <a href="/user/<%=@dude%>"><%= wish.content %></a>
-         <br><br>
-         <% end %>
-        <% end %>
-      </div>
-    <%end%>
+  <% else %>
+    <div class="recent_wishes" align="center">
+      <h2> Recent Wishes </h2>
+      <% @counter = 0 %>
+      <% Wish.all.reverse.each do |wish| %>
+      <% @counter += 1 %>
+      <% if @counter < 11 %>
+      <% @dude = (wish.user_id).to_i %>
+          <a href="/user/<%=session_current_user.id%>/profile/<%=@dude%>"><%= wish.content %></a>
+       <br><br>
+       <% end %>
+      <% end %>
+  </div>
 </div>
+
+     <div class="friends_list_main" align="center">
+      <h2> Friends </h2>
+        <% @friends = [] %>
+        <%Friend.all.each do |friend|%>
+          <% if session_current_user.id == friend.friender_id%>
+          <h3><a href="/user/<%=session_current_user.id%>/profile/<%=friend.friended_id%>"><%= User.find(friend.friended_id).name %></a></h3>
+          <% @friends << User.find(friend.friended_id).name %>           <%end%>
+      <%end%>
+    <%end%>
+    </div>
+
+
+    <div class="new_users_main" align="center">
+      <% if session_current_user != nil %>
+      <h2> New Users </h2>
+        <% @friends %>
+        <% @counter_users = 0 %>
+        <% User.all.reverse.each do |user| %>
+          <% if @friends.include?(user.name) %>   
+            <% else %>
+            <% @counter_users += 1 %>
+              <% if @counter_users < 11 %>
+                <a href="/user/<%=session_current_user.id%>/profile/<%=user.id%>"><%=user.name%><br><br>
+              <% else %>
+             <% end%>
+           <% end %>
+        <% end %>
+      <% end %>
 </body>
+   

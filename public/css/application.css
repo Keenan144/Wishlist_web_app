@@ -12,11 +12,29 @@ body{
   position: fixed;
   top: -15px;
 }
+.friends_list_main{
+  top: 150px;
+  left: 25px;
+  position: absolute;
+  padding: 20px;
+  width: 150px;
+  background: rgb(100, 100, 100); /* Fallback */
+  background: rgba(400, 400, 400, 0.2);
+}
 
 .top_nav_left{
   position: fixed;
   right: 8px;
   top: -16px;
+}
+.new_users_main{
+  top: 150px;
+  right: 25px;
+  position: absolute;
+  padding: 20px;
+  width: 150px;
+  background: rgb(100, 100, 100); /* Fallback */
+  background: rgba(400, 400, 400, 0.2);
 }
 
 
@@ -130,7 +148,10 @@ body{
 .profile_header{
   position: relative;
   top: 35px;
+  color: white;
+  font-variant: bold;
   font-family: fantasy;
+  text-shadow: 1px 1px black;
   font-weight: bold;
   font-size: 22px;
 }
@@ -143,6 +164,8 @@ body{
 }
 #profile_name{
   position: absolute;
+  color: white;
+  font-family: fantasy;
   top: 250px;
   left: 10px;
 }
@@ -201,8 +224,44 @@ body{
 #user_id{
   font-size: 0.1px;
 }
+.friend_me{
+  position: relative;
+  top: 220px;
+  left: 3px;
+}
+.add_friend{
+  background: #3442d9;
+  background-image: -webkit-linear-gradient(top, #3442d9, #03dbf7);
+  background-image: -moz-linear-gradient(top, #3442d9, #03dbf7);
+  background-image: -ms-linear-gradient(top, #3442d9, #03dbf7);
+  background-image: -o-linear-gradient(top, #3442d9, #03dbf7);
+  background-image: linear-gradient(to bottom, #3442d9, #03dbf7);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 5px;
+  text-decoration: none;
+}
+.add_friend:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+.friends_list{
+  position: fixed;
+  top: 140px;
+  left: 200px;
+  font-size: 20px;
+  font-weight: bold;
 
-
+}
 
 
 

@@ -64,14 +64,23 @@ get '/profile' do
   erb :profile
 end
 
-get '/user/:id' do
-  @id = params[:id]
+get '/user/:user_id/profile/:profile_id' do
+  @user_id = params[:user_id]
+  @profile_id = params[:profile_id]
 
   erb :user_profile
 end
 
+post '/user/:user_id/profile/:profile_id/add_friend' do
+  @friend = Friend.create(friender_id: params[:user_id], friended_id: params[:profile_id])
 
-get '/friends' do 
+
+end
+
+
+get '/user/:user_id/friends' do 
+  @friends = Friend.all
+  @users = User.all
 
   erb :friends
 end
